@@ -10,14 +10,25 @@ public class ShareSafariPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "ShareSafariPlugin"
     public let jsName = "ShareSafari"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "share", returnType: CAPPluginReturnPromise)
     ]
     private let implementation = ShareSafari()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func share(_ call: CAPPluginCall) {
+        guard let url = call.getString("url") else {
+            call.reject("URL is required")
+            return
+        }
+
+        DispatchQueue.main.async {
+            if let viewController = self.bridge?.viewController {
+                self.implementation.share(url, from: viewController)
+                call.resolve([
+                    "status": "success"
+                ])
+            } else {
+                call.reject("Unable to get view controller")
+            }
+        }
     }
 }

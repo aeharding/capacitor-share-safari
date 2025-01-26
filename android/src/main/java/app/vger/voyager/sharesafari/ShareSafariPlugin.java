@@ -8,15 +8,8 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 
 @CapacitorPlugin(name = "ShareSafari")
 public class ShareSafariPlugin extends Plugin {
-
-    private ShareSafari implementation = new ShareSafari();
-
     @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
-
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+    public void share(PluginCall call) {
+        call.unimplemented("Not implemented on Android");
     }
 }
