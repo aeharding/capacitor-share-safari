@@ -1,6 +1,6 @@
 {
   "name": "capacitor-share-safari",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Capacitor share, iOS only, with open in safari option",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
