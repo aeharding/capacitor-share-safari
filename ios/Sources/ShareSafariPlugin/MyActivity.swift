@@ -1,3 +1,5 @@
+import UIKit
+
 class MyActivity: UIActivity {
     var _activityTitle: String
     var _activityImage: UIImage?
